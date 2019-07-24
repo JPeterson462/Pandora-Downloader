@@ -1,0 +1,9 @@
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\bin\Release\netstandard2.0\Pandora.deps.json
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\bin\Release\netstandard2.0\Pandora.dll
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\bin\Release\netstandard2.0\Pandora.pdb
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.csproj.CoreCompileInputs.cache
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.AssemblyInfoInputs.cache
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.AssemblyInfo.cs
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.dll
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.pdb
+C:\Users\jpete\source\repos\PandoraDownloader\Pandora\obj\Release\netstandard2.0\Pandora.csprojAssemblyReference.cache
