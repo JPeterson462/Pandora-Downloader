@@ -1,3 +1,3 @@
 # Pandora Downloader
 
-![alt text](https://github.com/JPeterson462/Pandora-Downloder/pandora-downloader.png "Pandora Downloader Screenshot")
+![alt text](https://raw.githubusercontent.com/JPeterson462/Pandora-Downloader/master/pandora-downloader.png "Pandora Downloader Screenshot")
