@@ -117,7 +117,7 @@ namespace PandoraApp
         {
             string regexSearch = new string(System.IO.Path.GetInvalidFileNameChars()) + new string(System.IO.Path.GetInvalidPathChars());
             Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
-            return r.Replace(filename, "");
+            return r.Replace(filename, "").Trim();
         }
         private async void DownloadSongs_Click(object sender, RoutedEventArgs e)
         {
@@ -138,15 +138,18 @@ namespace PandoraApp
                             {
                                 System.Diagnostics.Debug.WriteLine(song.Title + "; " + song.AlbumName + "; " + song.ArtistName);
                                 string formattedTitle = song.Title;
-                                client.DownloadFile(song.AudioUrl, PandoraDirectory.Text + "/" + SanitizeFilename(formattedTitle + ".mp4"));
+                                client.DownloadFile(song.AudioUrl, PandoraDirectory.Text + "/" + SanitizeFilename(formattedTitle) + ".mp4");
                                 if (song.AlbumArtUrl != null)
                                 {
-                                    client.DownloadFile(song.AlbumArtUrl, PandoraDirectory.Text + "/" + SanitizeFilename(song.AlbumName + ".png"));
+                                    client.DownloadFile(song.AlbumArtUrl, PandoraDirectory.Text + "/" + SanitizeFilename(song.AlbumName) + ".png");
                                 }
-                                TagLib.File mp3File = TagLib.File.Create(PandoraDirectory.Text + "/" + SanitizeFilename(formattedTitle + ".mp4"));
+                                TagLib.File mp3File = TagLib.File.Create(PandoraDirectory.Text + "/" + SanitizeFilename(formattedTitle) + ".mp4");
                                 mp3File.Tag.Title = song.Title;
                                 mp3File.Tag.Album = song.AlbumName;
                                 mp3File.Tag.AlbumArtists = song.ArtistName.Split(',');
+                                mp3File.Tag.Pictures = new TagLib.IPicture[] {
+                                    new TagLib.Picture(PandoraDirectory.Text + "/" + SanitizeFilename(song.AlbumName) + ".png")
+                                };
                                 mp3File.Save();
                                 Log.AppendText("\n" + "Downloading (" + (count + 1) + "/" + NumberOfSongs.Text + "): " + song.Title + " by " + song.ArtistName);
                                 Files.Items.Add(new Song()
