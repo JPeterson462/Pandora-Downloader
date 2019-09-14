@@ -33,6 +33,11 @@ namespace PandoraApp
             public string Artist { get; set; }
             public string Album { get; set; }
         }
+        public class StationCache
+        {
+            public string Name { get; set; }
+            public List<PandoraSong> Songs { get; set; } = new List<PandoraSong>();
+        }
         private PandoraService pandoraService;
         private RESTfulService restfulService;
         private PandoraState pandoraState;
@@ -129,6 +134,8 @@ namespace PandoraApp
                 {
                     int songsLeft = int.Parse(NumberOfSongs.Text);
                     int count = 0;
+                    StationCache cache = new StationCache();
+                    cache.Name = station.Name;
                     while (songsLeft > 0)
                     {
                         List<PandoraSong> playlist = await pandoraService.GetPandoraPlaylistAsync(restfulService, pandoraState, station);
@@ -136,7 +143,6 @@ namespace PandoraApp
                         {
                             if (!IsInLibrary(song.Title, song.AlbumName, song.ArtistName) && songsLeft > 0)
                             {
-                                System.Diagnostics.Debug.WriteLine(song.Title + "; " + song.AlbumName + "; " + song.ArtistName);
                                 string formattedTitle = song.Title;
                                 client.DownloadFile(song.AudioUrl, PandoraDirectory.Text + "/" + SanitizeFilename(formattedTitle) + ".mp4");
                                 if (song.AlbumArtUrl != null)
@@ -158,11 +164,14 @@ namespace PandoraApp
                                     Album = song.AlbumName,
                                     Artist = song.ArtistName
                                 });
+                                cache.Songs.Add(song);
                                 songsLeft--;
                                 count++;
                             }
                         }
                     }
+                    string serializedSongList = JsonConvert.SerializeObject(cache);
+                    File.WriteAllText(PandoraDirectory.Text + "/Songs_" + Guid.NewGuid().ToString() + ".json", serializedSongList);
                     Files.Items.SortDescriptions.Add(new SortDescription(Files.Columns[0].SortMemberPath, ListSortDirection.Ascending));
                 }
                 else

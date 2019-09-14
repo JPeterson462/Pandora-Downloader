@@ -45,7 +45,7 @@
                     </ComboBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBox Width="200" Height="150" TextChanged="Log_TextChanged" TextWrapping="Wrap" Margin="0 10 0 0" Name="Log">Starting up...</TextBox>
+                    <TextBox Width="200" Height="125" TextChanged="Log_TextChanged" TextWrapping="Wrap" Margin="0 10 0 0" Name="Log">Starting up...</TextBox>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Vertical" Width="105" Margin="15 0 0 0">
